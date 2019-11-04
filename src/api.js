@@ -13,7 +13,7 @@ function createItem(name){
 
 const getItems = function () {
   return fetch (`${BASE_URL}/items`)
-    .then(response => response.json());
+   
   
   // return Promise.resolve('A successful response!');
 };

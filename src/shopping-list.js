@@ -1,5 +1,5 @@
 import $ from 'jquery';
-
+import findAndUpdate from './store';
 import store from './store';
 import item from './item';
 import api from './api';
@@ -84,7 +84,16 @@ const handleEditShoppingItemSubmit = function () {
     event.preventDefault();
     const id = getItemIdFromElement(event.currentTarget);
     const itemName = $(event.currentTarget).find('.shopping-item').val();
-    store.findAndUpdateName(id, itemName);
+    api.updateItem(id, {
+      itemName
+    })
+      .then(res => res.json())
+      .then((updateItem) => {
+        store.findAndUpdate(id, {
+          itemName,
+        });
+        render();
+      });
     render();
   });
 };
@@ -114,5 +123,5 @@ const bindEventListeners = function () {
 // This object contains the only exposed methods from this module:
 export default {
   render,
-  bindEventListeners
+  bindEventListeners,
 };

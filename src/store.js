@@ -25,9 +25,8 @@ const toggleCheckedFilter = function () {
 };
 
 function findAndUpdate(id, newData){
-  const currentItem = this.items.findById(id);
-  let newName = currentItem.name;
-  Object.assign(newData, currentItem);
+  let currentItem = this.findById(id);
+  Object.assign(currentItem, newData);
 }
 
 /*
