@@ -12,7 +12,7 @@ function createItem(name){
 }
 
 const getItems = function () {
-  return fetch (`${BASE_URL}/items`)
+  return fetch (`${BASE_URL}/items`);
    
   
   // return Promise.resolve('A successful response!');
@@ -31,4 +31,4 @@ export default {
   getItems,
   createItem,
   updateItem
-}
+};

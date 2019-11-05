@@ -84,25 +84,35 @@ const handleEditShoppingItemSubmit = function () {
     event.preventDefault();
     const id = getItemIdFromElement(event.currentTarget);
     const itemName = $(event.currentTarget).find('.shopping-item').val();
+    console.log(id, itemName);
     api.updateItem(id, {
-      itemName
+      name: itemName
     })
       .then(res => res.json())
       .then((updateItem) => {
         store.findAndUpdate(id, {
-          itemName,
+          name: itemName
         });
         render();
       });
-    render();
   });
 };
 
 const handleItemCheckClicked = function () {
   $('.js-shopping-list').on('click', '.js-item-toggle', event => {
     const id = getItemIdFromElement(event.currentTarget);
-    store.findAndToggleChecked(id);
-    render();
+    
+    store.findAndUpdate(id);
+    api.updateItem(id, {
+      checked: item.checked = !item.checked
+    })
+      .then(res => res.json())
+      .then((updateItem) => {
+        store.findAndUpdate(id, {
+          checked: item.checked = !item.checked
+        });
+        render();
+      });
   });
 };
 
